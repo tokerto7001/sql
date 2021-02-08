@@ -1,0 +1,34 @@
+1. SELECT InvoiceId, CustomerId, Total FROM invoices
+ORDER BY CustomerId ASC, Total DESC;
+2. SELECT InvoiceId, CustomerId, Total FROM invoices
+ORDER BY Total DESC, CustomerId ASC;
+3. In the first querry, it begins with the smallest customer id number and continues through the greatest number and when customer id is same with other rows, at first it writes biggest amount of total and sorts it from larger number to smaller number.
+   In the second querry, it begins with the greatest total number  and sorts the table starting with the larger number and continuing through the smaller. If total numbers are same with other rows, it first displays the smallest customer id.
+4. SELECT * FROM invoices
+WHERE total >= 10
+LIMIT 10;
+5. SELECT * FROM invoices
+WHERE Total < 10
+LIMIT 5;
+6. SELECT name FROM tracks
+WHERE name LIKE "B%s";
+7. SELECT * FROM invoices
+WHERE strftime('%Y', InvoiceDate) = "2010" AND BillingCountry IN ("Germany", "USA", "Norway", "Canada")
+ORDER BY InvoiceDate DESC;
+8. SELECT AlbumId, COUNT(AlbumId) AS number_of_tracks FROM tracks
+GROUP BY  AlbumId
+ORDER BY number_of_tracks DESC;
+9. SELECT t.name, a.title FROM tracks t INNER JOIN albums a on t.AlbumId = a.AlbumId;
+10. SELECT t.name, t.AlbumId, a.Title, MIN(t.Milliseconds) FROM tracks t
+INNER JOIN albums a on t.AlbumId = a.AlbumId
+GROUP BY t.AlbumId
+ORDER BY Milliseconds DESC;
+11. SELECT t.Name, t.AlbumId, a.Title, SUM(t.Milliseconds) FROM tracks t
+INNER JOIN albums a on t.AlbumId = a.AlbumId
+GROUP BY t.AlbumId
+ORDER BY SUM(Milliseconds) DESC;
+12. SELECT a.Title, SUM(t.Milliseconds) AS total_duration FROM tracks t
+INNER JOIN albums a on t.AlbumId = a.AlbumId
+GROUP BY a.AlbumId 
+HAVING total_duration > 4200000;
+
